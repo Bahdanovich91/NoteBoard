@@ -9,7 +9,7 @@ class NoteController extends Controller
 {
     public function index() {
 
-        return view('home');
+        return view('home', ['data' => Note::all()]);
     }
 
     public function store(NoteRequest $request) {

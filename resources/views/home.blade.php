@@ -17,8 +17,18 @@
         </div>
         <div class="form-group mt-4">
             <label for="description">Description</label>
-            <textarea name="description" id="description" placeholder="description" class="form-control"></textarea>
+            <textarea name="description" id="description" placeholder="Description" class="form-control"></textarea>
         </div>
-        <button type="submit" class="btn btn-success mt-4">save</button>
+        <button type="submit" class="btn btn-success mt-2">save</button>
     </form>
+
+    <div id="notes" class="mt-4">
+        <h2>All notes</h2>
+        @foreach($data as $elem)
+            <div class="alert alert-info">
+                <h3>{{ $elem->name }}</h3>
+                <p>{{ $elem->description }}</p>
+            </div>
+        @endforeach
+    </div>
 @endsection
