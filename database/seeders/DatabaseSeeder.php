@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Note;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,5 @@ class DatabaseSeeder extends Seeder
         $this->call([
             NoteSeeder::class
         ]);
-        // \App\Models\User::factory(10)->create();
     }
 }

@@ -16,7 +16,7 @@ class NoteFactory extends Factory
     {
         return [
             'name' => Str::random(10),
-            'description' => Str::random(10)
+            'description' => Str::random(50)
         ];
     }
 }
