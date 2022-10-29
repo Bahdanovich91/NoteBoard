@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Note;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -11,9 +12,19 @@ class NoteControllerTest extends TestCase
 
     public function testIndex()
     {
+        $note = new Note();
+        $note->name = 'test name';
+        $note->description = 'test description';
+
+        $note->save();
+
         $response = $this->get('/');
 
         $response->assertStatus(200);
+        $response->assertSee([
+            'test name',
+            'test description'
+        ]);
     }
 
     public function testStore()
@@ -29,7 +40,7 @@ class NoteControllerTest extends TestCase
         ]);
     }
 
-    public function testValidationErrors()
+    public function testStoreValidationErrors()
     {
         $response = $this->followingRedirects()->post('/store');
         $response->assertStatus(200);
