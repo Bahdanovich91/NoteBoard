@@ -9,14 +9,14 @@ class NoteControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_index()
+    public function testIndex()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
     }
 
-    public function test_store()
+    public function testStore()
     {
         $this->post('/store', [
             'name' => 'Test User',
@@ -27,5 +27,13 @@ class NoteControllerTest extends TestCase
             'name' => 'Test User',
             'description' => 'test@example.com'
         ]);
+    }
+
+    public function testValidationErrors()
+    {
+        $response = $this->followingRedirects()->post('/store');
+        $response->assertStatus(200);
+        $response->assertSee('The name field is required.');
+        $response->assertSee('The description field is required.');
     }
 }
