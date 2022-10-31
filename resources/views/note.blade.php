@@ -2,14 +2,17 @@
 
 @section('title', 'Home')
 
-@section('body')
+@section('content')
+
+    @include('inc.header')
+
     <h1>Note</h1>
 
     <div>
         @include('inc.messages')
     </div>
 
-    <form action="{{ route('store') }}" method="post">
+    <form action="{{ route('store') }}" method="POST">
         @csrf
         <div class="form-group mt-4">
             <label for="name">Your name</label>

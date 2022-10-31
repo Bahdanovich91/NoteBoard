@@ -1,8 +1,21 @@
 <?php
 
-use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [NoteController::class, 'index'])->name('home');
+Route::group(['namespace' => 'App\Http\Controllers'], function ()
+{
+    /**
+     * NoteController Routes
+     */
+    Route::get('/', 'NoteController@index')->name('note');
+    Route::post('/store', 'NoteController@store')->name('store');
 
-Route::post('/store', [NoteController::class, 'store'])->name('store');
+    /**
+     * AuthController Routes
+     */
+    Route::get('/login', 'AuthController@showLoginForm')->name('login');
+    Route::get('/logout', 'AuthController@logout')->name('logout');
+
+    Route::get('/register', 'AuthController@showRegisterForm')->name('register');
+    Route::post('/register_process', 'AuthController@register')->name('register_process');
+});
