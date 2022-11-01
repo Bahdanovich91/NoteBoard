@@ -43,6 +43,6 @@ class AuthController extends Controller
             auth("web")->login($user);
         }
 
-        return redirect(route("note"));
+        return redirect(route("notepad"));
     }
 }

@@ -10,15 +10,15 @@
         @include('inc.messages')
     </div>
 
-    <form action="{{ route('store') }}" method="POST">
+    <form action="{{ route('store') }}" method="POST" class="form-signin w-100 m-auto">
         @csrf
-        <div class="form-group mt-4">
-            <label for="email">Your name</label>
-            <input id="email" name="email" type="text"placeholder="Email" />
+        <div class="form-floating">
+            <input  id="email" name="email" type="text" class="form-control" placeholder="name@example.com">
+            <label for="email">Email address</label>
         </div>
-        <div class="form-group mt-4">
-            <label for="password">Description</label>
-            <input id="password" name="password" type="password" placeholder="Пароль" />
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" placeholder="Password">
+            <label for="password">Password</label>
         </div>
 
         <div>
@@ -29,6 +29,6 @@
             <a href="{{ route("register") }}">Регистрация</a>
         </div>
 
-        <button type="submit">Войти</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
     </form>
 @endsection

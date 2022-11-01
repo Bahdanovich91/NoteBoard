@@ -10,31 +10,33 @@
         @include('inc.messages')
     </div>
 
-    <form action="{{ route("register_process") }}" method="POST">
+    <form action="{{ route("register_process") }}" method="POST" class="form-signin w-100 m-auto">
         @csrf
-        <div class="form-group mt-4">
+        <div class="form-floating">
+            <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
             <label for="name">Your name</label>
-            <input type="text" name="name" id="name" placeholder="Your name">
         </div>
-        <div class="form-group mt-4">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="text" placeholder="Email" />
-        </div>
-
-        <div class="form-group mt-4">
-            <label for="password">Email</label>
-            <input id="password" name="password" type="password" placeholder="password" />
+        <div class="form-floating">
+            <input  id="email" name="email" type="text" class="form-control" placeholder="name@example.com">
+            <label for="email">Email address</label>
         </div>
 
-        <div class="form-group mt-4">
-            <label for="password_confirmation">Email</label>
-            <input id="password_confirmation" name="password_confirmation" type="password" placeholder="password_confirmation" />
+        <div class="form-floating">
+            <input id="password" name="password" type="text" class="form-control" placeholder="Password">
+            <label for="password">Password</label>
+        </div>
+
+        <div class="form-floating">
+            <input id="password_confirmation" name="password_confirmation" class="form-control" type="text" placeholder="password_confirmation" />
+            <label for="password_confirmation">Repeat password</label>
         </div>
 
         <div>
-            <a href="{{ route("login") }}" class="font-medium text-blue-900 hover:bg-blue-300 rounded-md p-2">Есть аккаунт?</a>
+            <a href="{{ route("login") }}">Login?</a>
         </div>
 
-        <button type="submit" class="btn btn-success mt-2">save</button>
+        <button type="submit"  class="w-100 btn btn-lg btn-primary">save</button>
+
+
     </form>
 @endsection

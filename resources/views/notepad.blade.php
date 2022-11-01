@@ -8,9 +8,9 @@
 
     <h1>Note</h1>
 
-    <div>
-        @include('inc.messages')
-    </div>
+{{--    <div>--}}
+{{--        @include('inc.messages')--}}
+{{--    </div>--}}
 
     <form action="{{ route('store') }}" method="POST">
         @csrf
@@ -25,13 +25,4 @@
         <button type="submit" class="btn btn-success mt-2">save</button>
     </form>
 
-    <div id="notes" class="mt-4">
-        <h2>All notes</h2>
-        @foreach($data as $elem)
-            <div class="alert alert-info">
-                <h3>{{ $elem->name }}</h3>
-                <p>{{ $elem->description }}</p>
-            </div>
-        @endforeach
-    </div>
 @endsection

@@ -9,7 +9,12 @@ class NoteController extends Controller
 {
     public function index()
     {
-        return view('note', ['data' => Note::all()]);
+        return view('notepad', ['data' => Note::all()]);
+    }
+
+    public function notes()
+    {
+        return view('notes', ['data' => Note::all()]);
     }
 
     public function store(NoteRequest $request)
@@ -20,6 +25,6 @@ class NoteController extends Controller
 
         $note->save();
 
-        return redirect()->route('note')->with('success', 'Added');
+        return redirect()->route('notepad')->with('success', 'Added');
     }
 }
