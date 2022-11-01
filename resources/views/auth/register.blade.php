@@ -4,6 +4,8 @@
 
 @section('content')
 
+    @include('inc.header')
+
     <h1>Registration</h1>
 
     <div>
@@ -22,12 +24,12 @@
         </div>
 
         <div class="form-floating">
-            <input id="password" name="password" type="text" class="form-control" placeholder="Password">
+            <input id="password" name="password" type="password" class="form-control" placeholder="Password">
             <label for="password">Password</label>
         </div>
 
         <div class="form-floating">
-            <input id="password_confirmation" name="password_confirmation" class="form-control" type="text" placeholder="password_confirmation" />
+            <input id="password_confirmation" name="password_confirmation" class="form-control" type="password" placeholder="password_confirmation" />
             <label for="password_confirmation">Repeat password</label>
         </div>
 

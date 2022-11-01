@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+
     public function showLoginForm()
     {
         return view('auth.login');
@@ -15,6 +17,20 @@ class AuthController extends Controller
     public function showRegisterForm()
     {
         return view('auth.register');
+    }
+
+    public function login(Request $request)
+    {
+        $data = $request->validate([
+            "email" => ["required", "email", "string"],
+            "password" => ["required"]
+        ]);
+
+        if(auth("web")->attempt($data)) {
+            return redirect(route("notes"));
+        }
+
+        return redirect(route("login"))->withErrors(["email" => "Пользователь не найден, либо данные введены не правильно"]);
     }
 
     public function logout()
@@ -31,13 +47,6 @@ class AuthController extends Controller
             "email" => $request->input('email'),
             "password" => bcrypt($request->input('password'))
         ]);
-//        $user = new User();
-//
-//        $user->name = $request->input('name');
-//        $user->email = $request->input('email');
-//        $user->password = $request->input('password');
-//
-//        $user->save();
 
         if($user) {
             auth("web")->login($user);

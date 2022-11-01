@@ -18,7 +18,7 @@ class NoteControllerTest extends TestCase
 
         $note->save();
 
-        $response = $this->get('/');
+        $response = $this->get('/notepad');
 
         $response->assertStatus(200);
         $response->assertSee([

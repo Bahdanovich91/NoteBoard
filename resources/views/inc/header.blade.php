@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn-outline-primary me-2">
                     <a href="{{ route('login') }}">Login</a>
                 </button>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-outline-primary me-2">
                     <a href="{{ route('register') }}">Registration</a>
                 </button>
             </div>
