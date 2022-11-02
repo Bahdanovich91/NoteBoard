@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Note;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -12,27 +12,25 @@ class NoteControllerTest extends TestCase
 
     public function testIndex()
     {
-        $note = new Note();
-        $note->name = 'test name';
-        $note->description = 'test description';
+        $user = User::factory()->create();
 
-        $note->save();
-
-        $response = $this->get('/notepad');
+        $response = $this->actingAs($user,)
+            ->withSession(['banned' => false])
+            ->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee([
-            'test name',
-            'test description'
-        ]);
     }
 
     public function testStore()
     {
-        $this->post('/store', [
-            'name' => 'Test User',
-            'description' => 'test@example.com'
-        ]);
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user, 'web')
+            ->withSession(['banned' => false])
+            ->post('/store', [
+                'name' => 'Test User',
+                'description' => 'test@example.com'
+            ]);
 
         $this->assertDatabaseHas('notes', [
             'name' => 'Test User',
@@ -42,7 +40,9 @@ class NoteControllerTest extends TestCase
 
     public function testStoreValidationErrors()
     {
-        $response = $this->followingRedirects()->post('/store');
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user, 'web')->followingRedirects()->post('/store');
         $response->assertStatus(200);
         $response->assertSee('The name field is required.');
         $response->assertSee('The description field is required.');

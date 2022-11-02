@@ -12,7 +12,7 @@
         @include('inc.messages')
     </div>
 
-    <form action="{{ route("register_process") }}" method="POST" class="form-signin w-100 m-auto">
+    <form action="{{ route("register_process") }}" method="POST" class="form-signin m-auto">
         @csrf
         <div class="form-floating">
             <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
