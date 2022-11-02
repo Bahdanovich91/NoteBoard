@@ -22,7 +22,7 @@ class AuthControllerTest extends TestCase
     public function testLogout()
     {
         $user = User::factory()->create();
-        $this->be($user); // login
+        $this->be($user);
 
         $this->get('/logout')
             ->assertRedirect('/login');
