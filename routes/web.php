@@ -12,7 +12,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
          * NoteController Routes
          */
         Route::get('/', 'NoteController@index')->name('notepad');
-        Route::get('/notes', 'NoteController@notes')->name('notes');
+        Route::get('/notes', 'NoteController@viewNoties')->name('notes');
         Route::post('/store', 'NoteController@store')->name('store');
     });
 

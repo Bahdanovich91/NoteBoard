@@ -12,7 +12,7 @@ class NoteController extends Controller
         return view('notepad', ['data' => Note::all()]);
     }
 
-    public function notes()
+    public function viewNoties()
     {
         return view('notes', ['data' => Note::all()]);
     }

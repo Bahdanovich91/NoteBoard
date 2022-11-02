@@ -6,7 +6,7 @@
 
     @include('inc.header')
 
-    <div id="notes"class="mt-4">
+    <div id="notes" class="mt-4">
         <h2>All notes</h2>
         @foreach($data as $elem)
             <div class="alert alert-info">

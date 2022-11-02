@@ -21,6 +21,17 @@ class NoteControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testViewNoties()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user,)
+            ->withSession(['banned' => false])
+            ->get('/notes');
+
+        $response->assertStatus(200);
+    }
+
     public function testStore()
     {
         $user = User::factory()->create();
