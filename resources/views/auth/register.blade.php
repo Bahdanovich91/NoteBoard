@@ -33,11 +33,11 @@
             <label for="password_confirmation">Repeat password</label>
         </div>
 
-        <div>
-            <a href="{{ route("login") }}">Login?</a>
+        <div class="mt-2">
+            <a href="{{ route("login") }}">Login</a>
         </div>
 
-        <button type="submit"  class="w-100 btn btn-lg btn-primary">save</button>
+        <button type="submit"  class="w-100 btn btn-lg btn-primary mt-2">save</button>
 
 
     </form>

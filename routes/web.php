@@ -23,5 +23,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
 
         Route::get('/register', 'AuthController@showRegisterForm')->name('register');
         Route::post('/register_process', 'AuthController@register')->name('register_process');
+
+        Route::get('/forgot', 'AuthController@showForgotForm')->name('forgot');
+        Route::post('/forgot_process', 'AuthController@forgot')->name('forgot_process');
     });
 });
