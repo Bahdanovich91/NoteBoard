@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NoteRequest;
 use App\Models\Note;
+use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {
@@ -14,7 +15,8 @@ class NoteController extends Controller
 
     public function viewNoties()
     {
-        return view('notes', ['data' => Note::all()]);
+        $user = Auth::user()->id;
+        return view('notes', ['data' => Note::all()->where('user_id', $user)]);
     }
 
     public function store(NoteRequest $request)
@@ -22,6 +24,7 @@ class NoteController extends Controller
         $note = new Note();
         $note->name = $request->input('name');
         $note->description = $request->input('description');
+        $note->user_id = Auth::user()->id;
 
         $note->save();
 
