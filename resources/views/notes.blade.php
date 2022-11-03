@@ -15,6 +15,10 @@
                 <a href="{{ route('selected_note', $elem->id) }}"><button>Open</button></a>
             </div>
         @endforeach
+
+        <a href="{{ route('notes_delete') }}">
+            <button>Delete all</button>
+        </a>
     </div>
 
 @endsection

@@ -59,4 +59,12 @@ class NoteController extends Controller
 
         return redirect()->route('notes')->with('success', 'Note deleted');
     }
+
+    public function deleteAllNotes()
+    {
+        $user = Auth::user()->id;
+        Note::where('user_id', $user)->delete();
+
+        return redirect()->route('notepad')->with('success', 'Notes deleted');
+    }
 }
