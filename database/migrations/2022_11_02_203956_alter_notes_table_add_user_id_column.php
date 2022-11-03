@@ -14,7 +14,7 @@ class AlterNotesTableAddUserIdColumn extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
         });
     }
 
