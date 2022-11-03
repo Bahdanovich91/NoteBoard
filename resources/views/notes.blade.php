@@ -12,6 +12,7 @@
             <div class="alert alert-info">
                 <h3>{{ $elem->name }}</h3>
                 <p>{{ $elem->description }}</p>
+                <a href="{{ route('selected_note', $elem->id) }}"><button>Open</button></a>
             </div>
         @endforeach
     </div>

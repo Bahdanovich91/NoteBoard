@@ -6,6 +6,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
 {
     Route::middleware("auth")->group(function ()
     {
+        /**
+         * AuthController Routes
+         */
         Route::get('/logout', 'AuthController@logout')->name('logout');
 
         /**
@@ -13,11 +16,15 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
          */
         Route::get('/', 'NoteController@index')->name('notepad');
         Route::get('/notes', 'NoteController@viewNoties')->name('notes');
+        Route::get('/notes/{id}', 'NoteController@showSelectedNote')->name('selected_note');
         Route::post('/store', 'NoteController@store')->name('store');
     });
 
     Route::middleware("guest")->group(function ()
     {
+        /**
+         * AuthController Routes
+         */
         Route::get('/login', 'AuthController@showLoginForm')->name('login');
         Route::post('/login_process', 'AuthController@login')->name('login_process');
 

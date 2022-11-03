@@ -30,4 +30,10 @@ class NoteController extends Controller
 
         return redirect()->route('notepad')->with('success', 'Added');
     }
+
+    public function showSelectedNote($id)
+    {
+        $note = new Note();
+        return view('selected_note', ['data' => $note->find($id)]);
+    }
 }
