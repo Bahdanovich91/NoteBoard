@@ -19,6 +19,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
         Route::get('/notes/{id}', 'NoteController@showSelectedNote')->name('selected_note');
         Route::get('/notes/{id}/update', 'NoteController@noteUpdate')->name('note_update');
         Route::post('/notes/{id}/update', 'NoteController@noteUpdateSubmit')->name('note_update_submit');
+        Route::get('/notes/{id}/delete', 'NoteController@deleteNote')->name('note_delete');
         Route::post('/store', 'NoteController@store')->name('store');
     });
 

@@ -53,4 +53,10 @@ class NoteController extends Controller
 
         return redirect()->route('selected_note', $id)->with('success', 'Updated');
     }
+
+    public function deleteNote($id) {
+        Note::find($id)->delete();
+
+        return redirect()->route('notes')->with('success', 'Note deleted');
+    }
 }

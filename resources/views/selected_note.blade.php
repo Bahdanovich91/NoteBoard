@@ -16,6 +16,9 @@
             <a href="{{ route('note_update', $data->id) }}">
                 <button>Edit</button>
             </a>
+            <a href="{{ route('note_delete', $data->id) }}">
+                <button>Delete</button>
+            </a>
         </div>
     </div>
 
