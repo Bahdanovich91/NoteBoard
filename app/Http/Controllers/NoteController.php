@@ -36,4 +36,21 @@ class NoteController extends Controller
         $note = new Note();
         return view('selected_note', ['data' => $note->find($id)]);
     }
+
+    public function noteUpdate($id)
+    {
+        $note = new Note();
+        return view('note_update', ['data' => $note->find($id)]);
+    }
+
+    public function noteUpdateSubmit($id, NoteRequest $request)
+    {
+        $note = Note::find($id);
+        $note->name = $request->input('name');
+        $note->description = $request->input('description');
+
+        $note->save();
+
+        return redirect()->route('selected_note', $id)->with('success', 'Updated');
+    }
 }
