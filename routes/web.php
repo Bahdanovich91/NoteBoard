@@ -14,7 +14,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
         /**
          * NoteController Routes
          */
-        Route::get('/', 'NoteController@index')->name('notepad');
+        Route::get('/', 'NoteController@index')->name('index');
+        Route::get('/notes/create', 'NoteController@create')->name('note_create');
         Route::get('/notes', 'NoteController@viewNoties')->name('notes');
         Route::get('/notes/delete', 'NoteController@deleteAllNotes')->name('notes_delete');
         Route::get('/notes/{id}', 'NoteController@showSelectedNote')->name('selected_note');

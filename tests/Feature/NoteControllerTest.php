@@ -53,9 +53,11 @@ class NoteControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user, 'web')->followingRedirects()->post('/store');
-        $response->assertStatus(200);
-        $response->assertSee('The name field is required.');
-        $response->assertSee('The description field is required.');
+        $response = $this->actingAs($user, 'web')
+            ->post(route('store'))
+            ->assertInvalid([
+            'name' => 'The name field is required.',
+            'description' => 'The description field is required.'
+        ]);
     }
 }

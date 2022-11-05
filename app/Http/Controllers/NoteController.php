@@ -10,7 +10,12 @@ class NoteController extends Controller
 {
     public function index()
     {
-        return view('notepad', ['data' => Note::all()]);
+        return view('index');
+    }
+
+    public function create()
+    {
+        return view('note_create', ['data' => Note::all()]);
     }
 
     public function viewNoties()
@@ -28,7 +33,7 @@ class NoteController extends Controller
 
         $note->save();
 
-        return redirect()->route('notepad')->with('success', 'Added');
+        return redirect()->route('note_create')->with('success', 'Added');
     }
 
     public function showSelectedNote($id)
@@ -65,6 +70,6 @@ class NoteController extends Controller
         $user = Auth::user()->id;
         Note::where('user_id', $user)->delete();
 
-        return redirect()->route('notepad')->with('success', 'Notes deleted');
+        return redirect()->route('note_create')->with('success', 'Notes deleted');
     }
 }

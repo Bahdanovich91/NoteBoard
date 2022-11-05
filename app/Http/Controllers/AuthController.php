@@ -54,7 +54,7 @@ class AuthController extends Controller
             auth("web")->login($user);
         }
 
-        return redirect(route("notepad"));
+        return redirect(route("index"));
     }
 
     public function showForgotForm()

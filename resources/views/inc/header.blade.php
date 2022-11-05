@@ -6,7 +6,8 @@
 
         @auth('web')
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="{{ route("notepad") }}" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="{{ route("index") }}" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="{{ route("note_create") }}" class="nav-link px-2 link-secondary">Note create</a></li>
             <li><a href="{{ route("notes") }}" class="nav-link px-2 link-dark">Notes</a></li>
         </ul>
 
