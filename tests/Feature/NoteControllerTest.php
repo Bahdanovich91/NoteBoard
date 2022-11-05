@@ -53,13 +53,15 @@ class NoteControllerTest extends TestCase
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
             ->post('/store', [
-                'name' => 'Test User',
+                'name' => 'Lorem',
                 'description' => 'test@example.com'
             ]);
 
+        $id = DB::table('notes')->where('name', 'Lorem')->value('id');
+
         $response = $this->actingAs($user,)
             ->withSession(['banned' => false])
-            ->get(route('selected_note', $id = 1));
+            ->get(route('selected_note', $id));
 
         $response->assertStatus(200);
     }
@@ -75,9 +77,11 @@ class NoteControllerTest extends TestCase
                 'description' => 'test@example.com'
             ]);
 
+        $id = DB::table('notes')->where('name', 'Test User')->value('id');
+
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
-            ->post(route('note_update_submit', $id = 2), [
+            ->post(route('note_update_submit', $id), [
                 'name' => '2',
                 'description' => '2@example.com'
             ]);
