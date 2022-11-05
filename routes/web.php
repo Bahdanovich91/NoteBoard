@@ -15,14 +15,17 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
          * NoteController Routes
          */
         Route::get('/', 'NoteController@index')->name('index');
+        Route::post('/store', 'NoteController@store')->name('store');
+
         Route::get('/notes/create', 'NoteController@create')->name('note_create');
         Route::get('/notes', 'NoteController@viewNoties')->name('notes');
-        Route::get('/notes/delete', 'NoteController@deleteAllNotes')->name('notes_delete');
         Route::get('/notes/{id}', 'NoteController@showSelectedNote')->name('selected_note');
+
         Route::get('/notes/{id}/update', 'NoteController@noteUpdate')->name('note_update');
         Route::post('/notes/{id}/update', 'NoteController@noteUpdateSubmit')->name('note_update_submit');
+
+        Route::get('/notes/delete', 'NoteController@deleteAllNotes')->name('notes_delete');
         Route::get('/notes/{id}/delete', 'NoteController@deleteNote')->name('note_delete');
-        Route::post('/store', 'NoteController@store')->name('store');
     });
 
     Route::middleware("guest")->group(function () {
