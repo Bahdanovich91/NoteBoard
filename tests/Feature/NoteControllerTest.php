@@ -49,19 +49,11 @@ class NoteControllerTest extends TestCase
     public function testViewShowSelectedNote()
     {
         $user = User::factory()->create();
-
-        $response = $this->actingAs($user, 'web')
-            ->withSession(['banned' => false])
-            ->post('/store', [
-                'name' => 'Lorem',
-                'description' => 'test@example.com'
-            ]);
-
-        $id = DB::table('notes')->where('name', 'Lorem')->value('id');
+        $note = Note::factory()->create();
 
         $response = $this->actingAs($user,)
             ->withSession(['banned' => false])
-            ->get(route('selected_note', $id));
+            ->get(route('selected_note', $note->id));
 
         $response->assertStatus(200);
     }
@@ -69,68 +61,46 @@ class NoteControllerTest extends TestCase
     public function testNoteUpdateSubmit()
     {
         $user = User::factory()->create();
+        $note = Note::factory()->create();
 
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
-            ->post('/store', [
-                'name' => 'Test User',
+            ->post(route('note_update_submit', $note->id), [
+                'name' => 'test',
                 'description' => 'test@example.com'
             ]);
 
-        $id = DB::table('notes')->where('name', 'Test User')->value('id');
-
-        $response = $this->actingAs($user, 'web')
-            ->withSession(['banned' => false])
-            ->post(route('note_update_submit', $id), [
-                'name' => '2',
-                'description' => '2@example.com'
-            ]);
-
         $this->assertDatabaseHas('notes', [
-            'name' => '2',
-            'description' => '2@example.com'
+            'name' => 'test',
+            'description' => 'test@example.com'
         ]);
     }
 
-    public function testDeleteNote()
+    public function testDelete()
     {
         $user = User::factory()->create();
+        $note = Note::factory()->create();
 
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
-            ->post('/store', [
-                'name' => 'name',
-                'description' => 'sally@example.com'
-            ]);
-        $id = DB::table('notes')->where('name', 'name')->value('id');
-
-        $response = $this->actingAs($user, 'web')
-            ->withSession(['banned' => false])
-            ->get(route('note_delete', $id));
+            ->get(route('note_delete', $note->id));
 
         $this->assertDatabaseMissing('notes', [
-            'name' => 'name',
-            'description' => 'sally@example.com'
+            'id' => $note->id,
         ]);
     }
 
-    public function testDeleteAllNotes()
+    public function testDeleteAll()
     {
         $user = User::factory()->create();
+        $note = Note::factory()->create();
 
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
-            ->post('/store', [
-                'name' => 'Test',
-                'description' => 'sally@example.com'
-            ]);
-
-        $response = $this->actingAs($user, 'web')
-            ->withSession(['banned' => false])
-            ->get(route('notes_delete'));
+            ->get(route('note_delete', $note->id));
 
         $this->assertDatabaseMissing('notes', [
-            'name' => 'sally@example.com',
+            'id' => $note->id
         ]);
     }
 
@@ -140,7 +110,7 @@ class NoteControllerTest extends TestCase
 
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
-            ->post('/store', [
+            ->post(route('store'), [
                 'name' => 'Test User',
                 'description' => 'test@example.com'
             ]);
