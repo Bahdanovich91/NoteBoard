@@ -33,12 +33,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
          * AuthController Routes
          */
         Route::get('/login', 'AuthController@showLoginForm')->name('login');
-        Route::post('/login_process', 'AuthController@login')->name('login_process');
+        Route::post('/login', 'AuthController@login')->name('login_process');
 
         Route::get('/register', 'AuthController@showRegisterForm')->name('register');
-        Route::post('/register_process', 'AuthController@register')->name('register_process');
+        Route::post('/register', 'AuthController@register')->name('register_process');
 
         Route::get('/forgot', 'AuthController@showForgotForm')->name('forgot');
-        Route::post('/forgot_process', 'AuthController@forgot')->name('forgot_process');
+        Route::post('/forgot', 'AuthController@forgot')->name('forgot_process');
     });
 });

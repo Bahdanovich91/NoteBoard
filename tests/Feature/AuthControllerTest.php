@@ -10,7 +10,16 @@ class AuthControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRegisterAndLogin()
+    public function testRegister()
+    {
+        $user = User::factory()->create();
+
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+        ]);
+    }
+
+    public function testLogin()
     {
         $user = User::factory()->create();
 
