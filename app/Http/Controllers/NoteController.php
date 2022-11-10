@@ -15,13 +15,13 @@ class NoteController extends Controller
 
     public function create()
     {
-        return view('note_create', ['data' => Note::all()]);
+        return view('notes/note_create', ['data' => Note::all()]);
     }
 
     public function viewNoties()
     {
         $user = Auth::user()->id;
-        return view('notes', ['data' => Note::all()->where('user_id', $user)]);
+        return view('notes/notes', ['data' => Note::all()->where('user_id', $user)]);
     }
 
     public function store(NoteRequest $request)
@@ -39,13 +39,13 @@ class NoteController extends Controller
     public function showSelectedNote($id)
     {
         $note = new Note();
-        return view('selected_note', ['data' => $note->find($id)]);
+        return view('notes/selected_note', ['data' => $note->find($id)]);
     }
 
     public function noteUpdate($id)
     {
         $note = new Note();
-        return view('note_update', ['data' => $note->find($id)]);
+        return view('notes/note_update', ['data' => $note->find($id)]);
     }
 
     public function noteUpdateSubmit($id, NoteRequest $request)
