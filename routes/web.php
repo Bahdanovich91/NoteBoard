@@ -21,11 +21,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
         Route::get('/notes', 'NoteController@viewNoties')->name('notes');
         Route::get('/notes/{id}', 'NoteController@showSelectedNote')->name('selected_note');
 
-        Route::get('/notes/{id}/update', 'NoteController@noteUpdate')->name('note_update');
-        Route::post('/notes/{id}/update', 'NoteController@noteUpdateSubmit')->name('note_update_submit');
+        Route::get('/notes/{id}/update', 'NoteController@editField')->name('note_update');
+        Route::post('/notes/{id}/update', 'NoteController@update')->name('note_update_submit');
 
-        Route::get('/notes/delete', 'NoteController@deleteAllNotes')->name('notes_delete');
-        Route::get('/notes/{id}/delete', 'NoteController@deleteNote')->name('note_delete');
+        Route::get('/notes/delete', 'NoteController@deleteAll')->name('notes_delete');
+        Route::get('/notes/{id}/delete', 'NoteController@delete')->name('note_delete');
     });
 
     Route::middleware("guest")->group(function () {

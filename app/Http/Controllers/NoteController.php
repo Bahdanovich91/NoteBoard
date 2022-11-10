@@ -20,8 +20,7 @@ class NoteController extends Controller
 
     public function viewNoties()
     {
-        $user = Auth::user()->id;
-        return view('notes/notes', ['data' => Note::all()->where('user_id', $user)]);
+        return view('notes/notes', ['data' => Note::all()->where('user_id', Auth::user()->id)]);
     }
 
     public function store(NoteRequest $request)
@@ -38,37 +37,33 @@ class NoteController extends Controller
 
     public function showSelectedNote($id)
     {
-        $note = new Note();
-        return view('notes/selected_note', ['data' => $note->find($id)]);
+        return view('notes/selected_note', ['data' => Note::find($id)]);
     }
 
-    public function noteUpdate($id)
+    public function editField($id)
     {
-        $note = new Note();
-        return view('notes/note_update', ['data' => $note->find($id)]);
+        return view('notes/note_update', ['data' => Note::find($id)]);
     }
 
-    public function noteUpdateSubmit($id, NoteRequest $request)
+    public function update($id, NoteRequest $request)
     {
         $note = Note::find($id);
         $note->name = $request->input('name');
         $note->description = $request->input('description');
-
         $note->save();
 
         return redirect()->route('selected_note', $id)->with('success', 'Updated');
     }
 
-    public function deleteNote($id) {
+    public function delete($id) {
         Note::find($id)->delete();
 
         return redirect()->route('notes')->with('success', 'Note deleted');
     }
 
-    public function deleteAllNotes()
+    public function deleteAll()
     {
-        $user = Auth::user()->id;
-        Note::where('user_id', $user)->delete();
+        Note::where('user_id', Auth::user()->id)->delete();
 
         return redirect()->route('note_create')->with('success', 'Notes deleted');
     }
