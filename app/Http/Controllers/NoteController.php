@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\NoteRequest;
+use App\Models\Comment;
 use App\Models\Note;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,8 +64,8 @@ class NoteController extends Controller
 
     public function deleteAll()
     {
-        Note::where('user_id', Auth::user()->id)->delete();
+        Note::where('user_id', '=', Auth::user()->id)->delete();
 
-        return redirect()->route('note_create')->with('success', 'Notes deleted');
+        return redirect()->route('notes')->with('success', 'Notes deleted');
     }
 }

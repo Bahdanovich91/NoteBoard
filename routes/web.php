@@ -24,8 +24,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
         Route::get('/notes/{id}/update', 'NoteController@editField')->name('note_update');
         Route::post('/notes/{id}/update', 'NoteController@update')->name('note_update_submit');
 
-        Route::get('/notes/delete', 'NoteController@deleteAll')->name('notes_delete');
-        Route::get('/notes/{id}/delete', 'NoteController@delete')->name('note_delete');
+        Route::get('/note/deleteAll', 'NoteController@deleteAll')->name('notes_delete');
+        Route::get('/note/{id}/delete', 'NoteController@delete')->name('note_delete');
     });
 
     Route::middleware("guest")->group(function () {

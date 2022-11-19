@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@if($data)
+
 @section('title', $data->name)
 
 @section('content')
@@ -23,3 +25,5 @@
     </div>
 
 @endsection
+
+@endif
