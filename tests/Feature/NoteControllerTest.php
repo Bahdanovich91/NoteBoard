@@ -97,10 +97,10 @@ class NoteControllerTest extends TestCase
 
         $response = $this->actingAs($user, 'web')
             ->withSession(['banned' => false])
-            ->get(route('note_delete', $note->id));
+            ->get(route('notes_delete'));
 
         $this->assertDatabaseMissing('notes', [
-            'id' => $note->id
+            'user_id' => $user->id
         ]);
     }
 
