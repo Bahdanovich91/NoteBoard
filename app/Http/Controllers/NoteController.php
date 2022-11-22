@@ -38,7 +38,10 @@ class NoteController extends Controller
 
     public function showSelectedNote($id)
     {
-        return view('notes/selected_note', ['data' => Note::find($id)]);
+        return view('notes/selected_note', [
+            'data' => Note::find($id),
+            'comment' => Comment::all()->where('note_id', $id)
+        ]);
     }
 
     public function editField($id)

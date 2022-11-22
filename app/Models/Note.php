@@ -11,6 +11,11 @@ class Note extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class,'note_id','id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

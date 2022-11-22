@@ -26,6 +26,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
 
         Route::get('/note/deleteAll', 'NoteController@deleteAll')->name('notes_delete');
         Route::get('/note/{id}/delete', 'NoteController@delete')->name('note_delete');
+
+        /**
+         * CommentController Routes
+         */
+        Route::post('/notes/{id}/comments', 'CommentController@store')->name('store_comment');
     });
 
     Route::middleware("guest")->group(function () {
