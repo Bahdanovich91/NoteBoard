@@ -4,9 +4,9 @@
 
         <div class="form-group mt-2">
             <label for="comment">Comment</label>
-            <input  class="form-control" type="text" id="text" name="text" placeholder="Your Comment">
+            <input class="form-control" type="text" id="text" name="text" placeholder="Your Comment">
         </div>
-            <button type="submit" class="mt-2">Save comment</button>
+        <button type="submit" class="mt-2">Save comment</button>
     </form>
 
     @include('comments.comments')

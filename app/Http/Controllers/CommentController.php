@@ -18,4 +18,11 @@ class CommentController extends Controller
 
         return redirect()->route('selected_note', $id)->with('success', 'Added');
     }
+
+    public function delete($id, $noteId)
+    {
+        Comment::find($id)->delete();
+
+        return redirect()->route('selected_note', $noteId)->with('success', 'Comment deleted');
+    }
 }

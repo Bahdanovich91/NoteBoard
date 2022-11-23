@@ -20,7 +20,7 @@
                 <a href="{{ route('note_delete', $data->id) }}">
                     <button>Delete</button>
                 </a>
-                @include('comments.comment')
+                @include('comments.comment_form')
             </div>
         </div>
 

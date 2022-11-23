@@ -2,10 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace' => 'App\Http\Controllers'], function ()
-{
-    Route::middleware("auth")->group(function ()
-    {
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::middleware("auth")->group(function () {
         /**
          * AuthController Routes
          */
@@ -31,6 +29,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function ()
          * CommentController Routes
          */
         Route::post('/notes/{id}/comments', 'CommentController@store')->name('store_comment');
+        Route::get('/note/{id}/{commentId}/delete', 'CommentController@delete')->name('comment_delete');
     });
 
     Route::middleware("guest")->group(function () {
