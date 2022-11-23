@@ -12,10 +12,15 @@ class AuthControllerTest extends TestCase
 
     public function testRegister()
     {
-        $user = User::factory()->create();
+        $user = $this->post(route('register_process'), [
+            'name' => 'Test',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
 
         $this->assertDatabaseHas('users', [
-            'id' => $user->id,
+            'name' => 'Test',
         ]);
     }
 
@@ -33,7 +38,7 @@ class AuthControllerTest extends TestCase
         $user = User::factory()->create();
         $this->be($user);
 
-        $this->get('/logout')
-            ->assertRedirect('/login');
+        $this->get(route('logout'))
+            ->assertRedirect(route('login'));
     }
 }
