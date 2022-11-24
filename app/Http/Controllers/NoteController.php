@@ -6,6 +6,7 @@ use App\Http\Requests\NoteRequest;
 use App\Models\Comment;
 use App\Models\Note;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NoteController extends Controller
 {
@@ -70,5 +71,19 @@ class NoteController extends Controller
         Note::where('user_id', '=', Auth::user()->id)->delete();
 
         return redirect()->route('notes')->with('success', 'Notes deleted');
+    }
+
+    public function download()
+    {
+        $notes = Note::all()->where('user_id', Auth::user()->id);
+
+        $text = '';
+        foreach ($notes as $note) {
+            $text .= $note->name . "\n" . $note->description . "\n\n";
+        }
+
+        Storage::put('notes.txt', $text);
+
+        return Storage::download('notes.txt', 'download');
     }
 }

@@ -19,6 +19,10 @@
         <a href="{{ route('notes_delete') }}">
             <button>Delete all</button>
         </a>
+
+        <a href="{{ route('download_txt') }}">
+            <button>Download Notes</button>
+        </a>
     </div>
 
 @endsection
