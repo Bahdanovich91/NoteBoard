@@ -20,9 +20,17 @@
             <button>Delete all</button>
         </a>
 
-        <a href="{{ route('download_txt') }}">
-            <button>Download Notes</button>
-        </a>
+        <div class="mt-4">
+            <h4>Download Notes</h4>
+            <a href="{{ route('download_txt') }}">
+                <button>Download txt</button>
+            </a>
+
+            <a href="{{ route('download_excel') }}">
+                <button>Download excel</button>
+            </a>
+        </div>
+
     </div>
 
 @endsection

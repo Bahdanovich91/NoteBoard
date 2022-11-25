@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\NotesExport;
 use App\Http\Requests\NoteRequest;
 use App\Models\Comment;
 use App\Models\Note;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NoteController extends Controller
 {
@@ -85,5 +87,12 @@ class NoteController extends Controller
         Storage::put('notes.txt', $text);
 
         return Storage::download('notes.txt', 'download');
+    }
+
+    public function downloadExcel()
+    {
+        $id = Auth::user()->id;
+
+        return  Excel::download(new NotesExport($id), 'notes.xlsx');
     }
 }

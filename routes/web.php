@@ -15,7 +15,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
         Route::get('/', 'NoteController@index')->name('index');
         Route::post('/store', 'NoteController@store')->name('store');
 
-        Route::get('/notes/download', 'NoteController@download')->name('download_txt');
+        Route::get('/notes/download/txt', 'NoteController@download')->name('download_txt');
+        Route::get('/notes/download/excel', 'NoteController@downloadExcel')->name('download_excel');
 
         Route::get('/notes/create', 'NoteController@create')->name('note_create');
         Route::get('/notes', 'NoteController@viewNoties')->name('notes');
