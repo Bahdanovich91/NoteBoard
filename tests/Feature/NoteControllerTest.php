@@ -4,9 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Note;
 use App\Models\User;
-use Database\Seeders\NoteSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class NoteControllerTest extends TestCase

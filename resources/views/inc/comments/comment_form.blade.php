@@ -9,6 +9,6 @@
         <button type="submit" class="mt-2">Save comment</button>
     </form>
 
-    @include('comments.comments')
+    @include('inc.comments.comments')
 
 </div>
