@@ -12,20 +12,20 @@
         </ul>
 
         <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">
-                <a href="{{ route('logout') }}">Logout</a>
-            </button>
+            <a href="{{ route('logout') }}">
+                <button type="button" class="btn btn-outline-primary me-2">Logout</button>
+            </a>
         </div>
         @endauth
 
         @guest('web')
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-outline-primary me-2">
-                    <a href="{{ route('login') }}">Login</a>
-                </button>
-                <button type="button" class="btn btn-outline-primary me-2">
-                    <a href="{{ route('register') }}">Registration</a>
-                </button>
+                <a href="{{ route('login') }}">
+                    <button type="button" class="btn btn-outline-primary me-2">Logout</button>
+                </a>
+                <a href="{{ route('register') }}">
+                    <button type="button" class="btn btn-outline-primary me-2">Logout</button>
+                </a>
             </div>
         @endguest
     </header>

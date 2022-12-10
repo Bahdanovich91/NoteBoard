@@ -11,8 +11,10 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
     <div>
-        <button>
-            <a href="{{ route('note_create') }}">Note</a>
-        </button>
+        <a href="{{ route('note_create') }}">
+            <button type="submit" class="btn btn-success mt-2">
+                Note
+            </button>
+        </a>
     </div>
 @endsection
